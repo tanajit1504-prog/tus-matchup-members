@@ -16,7 +16,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Extract website source
         run: |
+          cp .github/workflows/deploy-pages.yml /tmp/deploy-pages.yml
           unzip -o tus-matchup-source.zip
+          cp /tmp/deploy-pages.yml .github/workflows/deploy-pages.yml
           rm tus-matchup-source.zip
       - name: Commit website files
         run: |
