@@ -1,0 +1,26 @@
+name: Import website source
+
+on:
+  push:
+    branches: [main]
+    paths: ["tus-matchup-source.zip"]
+
+permissions:
+  contents: write
+
+jobs:
+  import-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract website source
+        run: |
+          unzip -o tus-matchup-source.zip
+          rm tus-matchup-source.zip
+      - name: Commit website files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import TUS Matchup website source"
+          git push
