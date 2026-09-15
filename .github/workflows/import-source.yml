@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths: ["tus-matchup-source.zip"]
+  workflow_dispatch:
 
 permissions:
   contents: write
